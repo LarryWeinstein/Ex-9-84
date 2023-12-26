@@ -2,52 +2,52 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Movie {
-    private final String[] actors;
+    private final Person[] actors;
     private final String title;
 
-    private final String director;
+    private final Person director;
 
-    private final ArrayList<String> reviews;
+    private final ArrayList<Review> reviews;
 
-    public Movie(String title, String director, String[] actors) {
+    public Movie(String title, Person director, Person[] actors) {
         this.actors = actors;
         this.title = title;
         this.director = director;
         reviews = new ArrayList<>();
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public String getDirector(){
+    public Person getDirector() {
         return director;
     }
 
-    public String[] getActors(){
+    public Person[] getActors() {
         return actors;
     }
 
-    public void addReview(String review){
+    public void addReview(Review review) {
         reviews.add(review);
     }
 
     //No indication of need to remove reviews
     //retrieve random review
 
-    //Print out reviews
 
-
-    public void printReviews(){
-        for(String review : reviews){
-            System.out.println(review);
-        }
-    }
-
-    public String randomReview(){
+    public Review randomReview() {
         Random random = new Random();
         int index = random.nextInt(reviews.size());
         return reviews.get(index);
+    }
+
+    public float getAvgStarRating(){
+        float sum = 0.0f;
+        for(Review review: reviews){
+            sum += (float) review.getNumStars();
+        }
+        return sum / (float) reviews.size();
     }
 
 }

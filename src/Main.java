@@ -1,25 +1,42 @@
 public class Main {
     public static void main(String[] args) {
-        String[] actors = {"Mark Hammill", "Carrie Fisher", "Harrison Ford"};
-        Movie movie = new Movie("Star Wars", "George Lucas", actors);
+        //create first person
+        Person georgeLucas = new Person("George Lucas", "Lucas", "05/14/1944");
+        System.out.println(georgeLucas.getName());
+        System.out.println(georgeLucas.getLastName());
+        System.out.println(georgeLucas.getDateOfBirth());
 
-        System.out.println("Title: " + movie.getTitle());
-        System.out.println("Director: " + movie.getDirector());
-        String[] actors_list = movie.getActors();
-        System.out.println("Actors:");
-        for(String actor: actors_list){
-            System.out.println(actor);
+        Person markHamill = new Person("Mark Hamill", "Hamill", "09/25/1951");
+        Person harrisonFord = new Person("Harrison Ford", "Ford", "07/13/1942");
+        Person carrieFisher = new Person("Carrie Fisher", "Fisher", "10/21/1956");
+
+        Person[] actors = {markHamill, harrisonFord, carrieFisher};
+
+        Movie movie = new Movie("Star Wars", georgeLucas, actors);
+        //check getter methods
+        System.out.println(movie.getTitle());
+        System.out.println(movie.getDirector().getName());
+        System.out.println(movie.getActors()[1].getDateOfBirth());
+
+        //Create reviews
+        Person geneSiskel = new Person("Gene Siskel", "Siskel", "01/26/1946");
+        Person rogerEbert = new Person("Roger Ebert", "Ebert", "06/18/1942");
+
+        Review review1 = new Review(rogerEbert, "02/02/1973", "Good show", 5);
+        Review review2 = new Review(geneSiskel, "02/03/1973", "OK", 4);
+
+        movie.addReview(review1);
+        movie.addReview(review2);
+
+        //get average stars
+        System.out.println(movie.getAvgStarRating());
+
+        //Get random reviews
+        for(int i = 0; i < 3; i++){
+            Review reviewFound = movie.randomReview();
+            System.out.println(reviewFound.getAuthor().getName());
+            System.out.println(reviewFound.getReviewDate());
+            System.out.println(reviewFound.getText());
         }
-
-        movie.addReview("Greatest movie ever");
-        movie.addReview("I just don't get it");
-        movie.addReview("Could be better");
-
-        movie.printReviews();
-
-        System.out.println("Random reviews");
-        for(int i = 0; i < 5; i++){
-            System.out.println(movie.randomReview());
         }
-    }
 }
