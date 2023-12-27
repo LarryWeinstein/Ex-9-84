@@ -10,11 +10,19 @@ public class Movie {
 
     private final List<Review> reviews;
 
+    //Leave as default constructor
     public Movie(String title, Person director, Person[] actors) {
         this.actors = actors;
         this.title = title;
         this.director = director;
         reviews = new ArrayList<>();
+    }
+
+    public Movie(String title, Person director, Person[] actors, Review[] reviews){
+        this.title = title;
+        this.actors = actors;
+        this.director = director;
+        this.reviews = List.of(reviews);
     }
 
     public String getTitle() {
