@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Movie {
@@ -7,7 +8,7 @@ public class Movie {
 
     private final Person director;
 
-    private final ArrayList<Review> reviews;
+    private final List<Review> reviews;
 
     public Movie(String title, Person director, Person[] actors) {
         this.actors = actors;
@@ -42,9 +43,9 @@ public class Movie {
         return reviews.get(index);
     }
 
-    public float getAvgStarRating(){
+    public float getAvgStarRating() {
         float sum = 0.0f;
-        for(Review review: reviews){
+        for (Review review : reviews) {
             sum += (float) review.getNumStars();
         }
         return sum / (float) reviews.size();
